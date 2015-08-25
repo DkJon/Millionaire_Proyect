@@ -230,6 +230,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		pnlSuperior.add(btn50);
 		pnlSuperior.add(btnLlamada);
 		pnlSuperior.add(btnPublico);
+		pnlSuperior.add(new TimerJFrame());
 
 		return pnlSuperior;
 	}
