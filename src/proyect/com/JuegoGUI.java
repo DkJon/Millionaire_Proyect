@@ -84,12 +84,12 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		pnlLogo.add(new JLabel(logo));
 		return pnlLogo;
 	}
-
+	
 	// Crea un panel que contiene las preguntas y respuestas.
 	private JComponent PanelRespuesta() {
 
 		JPanel pnlRespuesta = new JPanel();
-		JPanel pnlCentral = new JPanel();
+		ImagePanel pnlCentral = new ImagePanel("src/files/millonario.jpg");
 		JPanel pnlSur = new JPanel();
 		JPanel pnlNorte = new JPanel();
 
