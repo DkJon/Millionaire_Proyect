@@ -25,7 +25,7 @@ public class TestTimer {
         		++min;
         		seg=0;
         	}
-            label.setText(String.valueOf(min)+" Min, "+String.valueOf(seg)+" Seg");
+            label.setText("<html><br>"+String.valueOf(min)+" Min, "+String.valueOf(seg)+" Seg");
          }
      }
 }
