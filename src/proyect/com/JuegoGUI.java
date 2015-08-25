@@ -45,6 +45,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private JButton btn50;
 	private JButton btnLlamada;
 	private JButton btnPublico;
+	
 	private String nombre;
 	private String imagenP = "src/files/";
 	
@@ -79,7 +80,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		addWindowListener(this); // Funcion de realizar eventos en windows
 		setTitle("Quien Quiere Ser Millonario ");
 		setLocation(0, 300);
-		setSize(645, 660);
+		setSize(645, 720);
 		// Propiedades de dimensiones Generales
 		setResizable(false);
 		setVisible(true);
@@ -149,10 +150,10 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		for (int i = 0; i < Num_Respuestas; i++) {
 
 			btnRespuestas[i].setPreferredSize(new Dimension(51, 30));// Edición tamaño del boton.
-			lblRespuestas[i].setPreferredSize(new Dimension(250, 80));// Edición tamaño del boton.
-			btnRespuestas[i].setBackground(backgroundColor);// Color de los botones de la respuesta
-			btnRespuestas[i].setForeground(Color.black);//Color de las respuestas desplegadas
-			lblRespuestas[i].setForeground(backgroundColor);//Color de las respuestas desplegadas
+			lblRespuestas[i].setPreferredSize(new Dimension(255, 80));// Edición tamaño del boton.
+			btnRespuestas[i].setBackground(Color.BLACK);// Color de los botones de la respuesta
+			btnRespuestas[i].setForeground(Color.WHITE);//Color de las respuestas desplegadas
+			lblRespuestas[i].setForeground(Color.WHITE);//Color de las respuestas desplegadas
 			pnlCentral.add(btnRespuestas[i]);
 			pnlCentral.add(lblRespuestas[i]);
 		}
@@ -213,19 +214,17 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		btn50 = new JButton(
 				"<html><font size = -1580><b><u>N</u>ext Question");
 		btn50.addActionListener(this);
-		btn50.setPreferredSize(new Dimension(10, 10));
+		btn50.setPreferredSize(new Dimension(10, 60));
 
 		btnLlamada = new JButton(
 				"<html><font size = -1580><b><u>N</u>ext Question");
 		btnLlamada.addActionListener(this);
-		btnLlamada.setPreferredSize(new Dimension(10, 10));
+		btnLlamada.setPreferredSize(new Dimension(10, 60));
 		
 		btnPublico = new JButton(
 				"<html><font size = -1580><b><u>N</u>ext Question");
 		btnPublico.addActionListener(this);
-		btnPublico.setPreferredSize(new Dimension(10, 10));
-		
-
+		btnPublico.setPreferredSize(new Dimension(10, 60));
 		
 		pnlSuperior.add(btn50);
 		pnlSuperior.add(btnLlamada);
@@ -233,6 +232,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 
 		return pnlSuperior;
 	}
+	
 	// Crea la etiqueta usada para mostrar las respuestas.
 	private void iniLblRespuestas() {
 
