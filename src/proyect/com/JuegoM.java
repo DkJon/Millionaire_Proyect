@@ -28,7 +28,7 @@ public class JuegoM {
         }
     }
 
-    public void SiguientePreg() {
+    public void siguientePreg() {
     	 if (DineroG == 0) {
              DineroG = 100000;
          } else if (DineroG == 500000) {
@@ -57,12 +57,12 @@ public class JuegoM {
     	 
         pregunta = extraerPreg();
 
-        ResA = ExtraerRes("A");
-        ResB = ExtraerRes("B");
-        ResC = ExtraerRes("C");
-        ResD = ExtraerRes("D");
+        ResA = extraerRes("A");
+        ResB = extraerRes("B");
+        ResC = extraerRes("C");
+        ResD = extraerRes("D");
 
-        ResCorrecta = ExtraerCorrectaPreg();
+        ResCorrecta = extraerCorrectaPreg();
     }
 
     private void salir() {
@@ -114,10 +114,10 @@ public class JuegoM {
             System.exit(1);
         }
 
-        return FormatoPreg(Preg);
+        return formatoPreg(Preg);
     }
 
-    private String FormatoPreg(String Preg) {
+    private String formatoPreg(String Preg) {
         StringTokenizer tokenizer = new StringTokenizer(Preg);
         int Contador = 0;
         String pregx = "";
@@ -138,7 +138,7 @@ public class JuegoM {
         return pregx;
     }
 
-    private String ExtraerRes(String Res) {
+    private String extraerRes(String Res) {
         String Resp = "";
         String linea;
         try {
@@ -166,7 +166,7 @@ public class JuegoM {
         return Resp;
     }
 
-    private String ExtraerCorrectaPreg() {
+    private String extraerCorrectaPreg() {
         String RespCorrecta = "";
         String linea;
         try {
@@ -191,12 +191,12 @@ public class JuegoM {
         return RespCorrecta;
     }
 
-    public String ObtenerResp() {
+    public String obtenerResp() {
 
         return pregunta;
     }
 
-    public String ObtextodePreg(String respuesta) {
+    public String obtextodePreg(String respuesta) {
         if (respuesta.equals("A")) {
             return ResA;
         }
@@ -213,7 +213,7 @@ public class JuegoM {
         }
     }
 
-    public boolean EsResCorrecta(String adivinar) {
+    public boolean esResCorrecta(String adivinar) {
         return (adivinar.equals(ResCorrecta));
     }
 
@@ -221,16 +221,16 @@ public class JuegoM {
         return (DineroG == 25000000);
     }
 
-    public String ObenerDineroGanado() {
+    public String obtenerDineroGanado() {
         String Dinero = "";
         if (DineroG == 25000000) {
-            Dinero = "₡25,000,000";
+            Dinero = "₡ 25,000,000";
         } else if (DineroG == 500000) {
-            Dinero = "₡5,00000.00 Zona Segura ";
+            Dinero = "₡ 5,00000.00 Zona Segura ";
         } else if (DineroG == 10000000) {
-            Dinero = "₡10,000,000 Zona Segura ";
+            Dinero = "₡ 10,000,000 Zona Segura ";
         }else {
-            Dinero = Dinero + "₡" + DineroG;
+            Dinero = Dinero + "₡ " + DineroG;
         }
         return Dinero;
     }
