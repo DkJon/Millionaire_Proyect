@@ -61,6 +61,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 
 	public JuegoGUI(JuegoM m) {
 		
+		
 		millis = System.currentTimeMillis();
 
 		mg = m;
@@ -151,7 +152,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 
 			btnRespuestas[i].setPreferredSize(new Dimension(51, 30));// Edición tamaño del boton.
 			lblRespuestas[i].setPreferredSize(new Dimension(255, 80));// Edición tamaño del boton.
-			btnRespuestas[i].setBackground(Color.BLACK);// Color de los botones de la respuesta
+			btnRespuestas[i].setBackground(backgroundColor);// Color de los botones de la respuesta
 			btnRespuestas[i].setForeground(Color.WHITE);//Color de las respuestas desplegadas
 			lblRespuestas[i].setForeground(Color.WHITE);//Color de las respuestas desplegadas
 			pnlCentral.add(btnRespuestas[i]);
