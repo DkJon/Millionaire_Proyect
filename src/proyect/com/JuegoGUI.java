@@ -47,6 +47,9 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private JButton btnPublico;
 	private String nombre;
 	private String imagenP = "src/files/";
+	
+	
+	private long millis = 0;
 
 
 	private Color backgroundColor = new Color(50, 20, 20);
@@ -56,6 +59,8 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private final int Num_Respuestas = 4;
 
 	public JuegoGUI(JuegoM m) {
+		
+		millis = System.currentTimeMillis();
 
 		mg = m;
 		//nombre = JOptionPane.showInputDialog("Ingrese su nombre");
@@ -84,7 +89,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	// Se utiliza Constructor para la funcion
 	private JComponent logoArea() {
 
-		ImagePanel logo = new ImagePanel("src/files/millonario.jpg");
+		ImagePanel logo = new ImagePanel("src/files/millonario.jpg",645, 285);
 		
 		return logo;
 		
@@ -94,7 +99,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private JComponent panelRespuesta() {
 
 		JPanel pnlRespuesta = new JPanel();
-		ImagePanel pnlCentral = new ImagePanel("src/files/millonario.jpg");
+		ImagePanel pnlCentral = new ImagePanel("src/files/respuestas.jpg",645, 175);
 		JPanel pnlSur = new JPanel();
 		JPanel pnlNorte = new JPanel();
 
@@ -131,8 +136,6 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 				"Jugador: "
 						+ nombre
 						+ "                                              Dinero Actual: ₡ 0");
-		// pnlSur es el encargado de almacenar y mostrar el nombre y dinero del
-		// jugador.
 		pnlSur.add(lblDineroG);
 		pnlSur.setBackground(Color.blue);
 		lblDineroG.setForeground(Color.white);
@@ -144,25 +147,14 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		ponerLblResp(s);
 
 		for (int i = 0; i < Num_Respuestas; i++) {
-			// btnRespuestas[i].setPreferredSize (new Dimension (150,30));
-			// EdiciÃ³n tamaÃ±o del boton.
-			btnRespuestas[i].setPreferredSize(new Dimension(150, 30));
-			// btnAnswers[i].setPreferredSize (new Dimension (50,60));
-			pnlCentral.add(btnRespuestas[i]);
-			// lblRespuestas[i].setPreferredSize (new Dimension (135, 30));
-			// Margenes X/Y Para botones.
-			lblRespuestas[i].setPreferredSize(new Dimension(135, 80));
-			// lblAnswers[i].setPreferredSize (new Dimension (135, 60));
-			pnlCentral.add(lblRespuestas[i]);
-			btnRespuestas[i].setBackground(backgroundColor);
-			// Color de los botones de la respuesta
-			btnRespuestas[i].setForeground(Color.white);
-			// btnRespuestas[i].setForeground(Color.white);Color de letras q
-			// contiene.
-			lblRespuestas[i].setForeground(backgroundColor);
-			// lblRespuestas[i].setForeground(backgroundColor); Color de las
-			// respuestas desplegadas
 
+			btnRespuestas[i].setPreferredSize(new Dimension(51, 30));// Edición tamaño del boton.
+			lblRespuestas[i].setPreferredSize(new Dimension(250, 80));// Edición tamaño del boton.
+			btnRespuestas[i].setBackground(backgroundColor);// Color de los botones de la respuesta
+			btnRespuestas[i].setForeground(Color.black);//Color de las respuestas desplegadas
+			lblRespuestas[i].setForeground(backgroundColor);//Color de las respuestas desplegadas
+			pnlCentral.add(btnRespuestas[i]);
+			pnlCentral.add(lblRespuestas[i]);
 		}
 
 		activarBtnRespuesta(false);
@@ -174,6 +166,13 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		pnlRespuesta.add(pnlSur, BorderLayout.SOUTH);
 
 		return pnlRespuesta;
+	}
+
+	private String count() {
+		long actual = System.currentTimeMillis();
+		System.out.println(actual);
+		System.out.println(millis);
+		return "eltiempo: "+String.valueOf((actual - millis)/100/60);
 	}
 
 	// Es un panel que contiene los botones "Salir" y "Proxima Pregunta"
@@ -318,7 +317,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 					} else {
 						lblDineroG
 								.setText(("Jugador: "
-										+ nombre
+										+ nombre+ count()
 										+ "                                                 Dinero Ganado: " + mg
 										.obtenerDineroGanado()));
 					}
