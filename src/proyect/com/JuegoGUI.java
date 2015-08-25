@@ -44,6 +44,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private String nombre;
 	private String imagenP = "src/files/";
 
+
 	private Color backgroundColor = new Color(50, 20, 20);
 
 	private JuegoM mg;

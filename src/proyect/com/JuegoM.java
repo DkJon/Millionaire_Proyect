@@ -29,32 +29,32 @@ public class JuegoM {
     }
 
     public void SiguientePreg() {
-        if (DineroG == 0) {
-            DineroG = 100000;
-        } else if (DineroG == 500000) {
-            DineroG = 500000+250000;
-        } else if (DineroG == 750000) {
-            DineroG = 750000+250000;
-        } else if (DineroG == 1000000) {
-            DineroG = 1000000+1500000;
-        } else if (DineroG == 2500000) {
-            DineroG = 2500000+2500000;
-        } else if (DineroG == 5000000) {
-            DineroG = 5000000+5000000;
-        } else if (DineroG == 10000000) {
-            DineroG = 10000000+2500000;
-        } else if (DineroG == 12500000) {
-            DineroG = 12500000+2500000;
-        } else if (DineroG == 15000000) {
-            DineroG = 15000000+2500000;
-        } else if (DineroG == 17500000) {
-            DineroG = 15000000+2500000;
-        } else if (DineroG == 20000000) {
-            DineroG = 20000000+5000000; 
-        } else {
-            DineroG = 100000 + DineroG;
-        }
-
+    	 if (DineroG == 0) {
+             DineroG = 100000;
+         } else if (DineroG == 500000) {
+             DineroG = 500000+250000;
+         } else if (DineroG == 750000) {
+             DineroG = 750000+250000;
+         } else if (DineroG == 1000000) {
+             DineroG = 1000000+1500000;
+         } else if (DineroG == 2500000) {
+             DineroG = 2500000+2500000;
+         } else if (DineroG == 5000000) {
+             DineroG = 5000000+5000000;
+         } else if (DineroG == 10000000) {
+             DineroG = 10000000+2500000;
+         } else if (DineroG == 12500000) {
+             DineroG = 12500000+2500000;
+         } else if (DineroG == 15000000) {
+             DineroG = 15000000+2500000;
+         } else if (DineroG == 17500000) {
+             DineroG = 17500000+2500000;
+         } else if (DineroG == 20000000) {
+             DineroG = 20000000+5000000; 
+         } else {
+             DineroG = 100000 + DineroG;
+         }
+    	 
         pregunta = extraerPreg();
 
         ResA = ExtraerRes("A");

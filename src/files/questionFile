@@ -28,7 +28,7 @@
 <C> Windows </C>
 <D> Alt </D>
 <ANS> B </ANS>
-<Q> Cual compañia desarrollo el primer mini-computador, PDP-8, en 1965? </Q>
+<Q> Cuál compañia desarrollo el primer mini-computador, PDP-8, en 1965? </Q>
 <A> IBM </A>
 <B> Hewlett-Packard </B>
 <C> DEC </C>
@@ -40,7 +40,7 @@
 <C> N64 </C>
 <D> Game Cube </D>
 <ANS> B </ANS>
-<Q> Cual lenguaje de alto nivel "Orientado a Objetos" fue desarrollado en Sun Microsystems por James Gosling y anunciado en 1995? </Q>
+<Q> Cuál lenguaje de alto nivel "Orientado a Objetos" fue desarrollado en Sun Microsystems por James Gosling y anunciado en 1995? </Q>
 <A> FORTRAN </A>
 <B> C </B>
 <C> Java </C>
@@ -59,10 +59,10 @@
 <D> spell-checker </D>
 <ANS> C </ANS>
 <Q> Cuáles de estos son versiones de Sistemas Operativos de WINDOWS? </Q>
-<A>  Macintosh, Mac OS X e Intel </A>
-<B> Linux, Delphi y Gnome </B>
-<C> Windows Fedora, Windows Unix System V y Windows MS-DOS </C> 
-<D> Windows NT, Windows XP </D>
+<A> Macintosh </A>
+<B> Linux </B>
+<C> Windows MS-DOS </C> 
+<D> Windows XP </D>
 <ANS> D </ANS>
 <Q> El fundador de Computer Science introdujo un modelo abstracto de la computadora en 1936. Cual era su nombre? </Q>
 <A> Alan Turing </A>
@@ -76,13 +76,13 @@
 <C> Modem rápido </C> 
 <D> ADSL </D>
 <ANS> D </ANS>
-<Q>  Que se difunde en la red Averroes? </Q>
-<A> Todo sistema operativo </A>
-<B> El sistema operativo Windows </B>
+<Q>  Qué se difunde en la red Averroes? </Q>
+<A> Todos los OS </A>
+<B> OS Windows </B>
 <C> Solo Linux </C>
-<D> Sólo ficheros de texto </D>
+<D> Ficheros de texto </D>
 <ANS> C </ANS>
-<Q> Como se le conoce al primer error Informatico ? </Q>
+<Q> Cómo se le conoce al primer error Informático ? </Q>
 <A> spider </A>
 <B> fly </B>
 <C> moth </C>
