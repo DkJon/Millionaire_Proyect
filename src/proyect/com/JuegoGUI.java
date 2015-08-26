@@ -10,30 +10,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Random;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
-public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
-		WindowListener {
+public class JuegoGUI extends javax.swing.JFrame implements ActionListener, WindowListener {
 
 	/**
-	 *Para que pueda convertir la clase en bits para enviarlo por la red  
+	 * Para que pueda convertir la clase en bits para enviarlo por la red
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * La interfaz ActionListener sirve para crear programas dinÃ¡micos y
-	 permitir la interacciÃ³n del usuario.
-	 El window listener es un objeto que se encarga de escuchar los eventos
-	 que se ejecutan que tienen que ver con la ventana.
-	 Estos eventos son como si esta activa,minimizada,maximizada, abierta,se
-	 cierra. 
+	 * permitir la interacciÃ³n del usuario. El window listener es un objeto que
+	 * se encarga de escuchar los eventos que se ejecutan que tienen que ver con
+	 * la ventana. Estos eventos son como si esta activa,minimizada,maximizada,
+	 * abierta,se cierra.
 	 */
 	private JScrollPane pnlDes;
 	private JTextArea txtPreguntas;
@@ -45,13 +47,11 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private JButton btn50;
 	private JButton btnLlamada;
 	private JButton btnPublico;
-	
+
 	private String nombre;
 	private String imagenP = "src/files/";
-	
-	
-	private long millis = 0;
 
+	private long millis = 0;
 
 	private Color backgroundColor = new Color(50, 20, 20);
 
@@ -60,12 +60,11 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private final int Num_Respuestas = 4;
 
 	public JuegoGUI(JuegoM m) {
-		
-		
+
 		millis = System.currentTimeMillis();
 
 		mg = m;
-		//nombre = JOptionPane.showInputDialog("Ingrese su nombre");
+		// nombre = JOptionPane.showInputDialog("Ingrese su nombre");
 		Container cont = getContentPane();
 		cont.setLayout(new BorderLayout());
 
@@ -77,7 +76,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		cont.add(pnlCentral, BorderLayout.CENTER);
 		cont.add(iniPanelInferior(), BorderLayout.SOUTH);
 		cont.add(iniPanelSuperior(), BorderLayout.NORTH);
-		
+
 		addWindowListener(this); // Funcion de realizar eventos en windows
 		setTitle("Quien Quiere Ser Millonario ");
 		setLocation(0, 300);
@@ -91,17 +90,17 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	// Se utiliza Constructor para la funcion
 	private JComponent logoArea() {
 
-		ImagePanel logo = new ImagePanel("src/files/millonario.jpg",645, 285);
-		
+		ImagePanel logo = new ImagePanel("src/files/millonario.jpg", 645, 285);
+
 		return logo;
-		
+
 	}
-	
+
 	// Crea un panel que contiene las preguntas y respuestas.
 	private JComponent panelRespuesta() {
 
 		JPanel pnlRespuesta = new JPanel();
-		ImagePanel pnlCentral = new ImagePanel("src/files/respuestas.jpg",645, 175);
+		ImagePanel pnlCentral = new ImagePanel("src/files/respuestas.jpg", 645, 175);
 		JPanel pnlSur = new JPanel();
 		JPanel pnlNorte = new JPanel();
 
@@ -135,9 +134,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		pnlNorte.setPreferredSize(new Dimension(460, 87));
 		// pnlNorth.setPreferredSize (new Dimension (410,120));
 		lblDineroG = new JLabel(
-				"Jugador: "
-						+ nombre
-						+ "                                              Dinero Actual: ₡ 0");
+				"Jugador: " + nombre + "                                              Dinero Actual: ₡ 0");
 		pnlSur.add(lblDineroG);
 		pnlSur.setBackground(Color.blue);
 		lblDineroG.setForeground(Color.white);
@@ -150,11 +147,22 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 
 		for (int i = 0; i < Num_Respuestas; i++) {
 
-			btnRespuestas[i].setPreferredSize(new Dimension(51, 30));// Edición tamaño del boton.
-			lblRespuestas[i].setPreferredSize(new Dimension(255, 80));// Edición tamaño del boton.
-			btnRespuestas[i].setBackground(Color.cyan);// Color de los botones de la respuesta
-			btnRespuestas[i].setForeground(Color.WHITE);//Color de las respuestas desplegadas
-			lblRespuestas[i].setForeground(Color.WHITE);//Color de las respuestas desplegadas
+			btnRespuestas[i].setPreferredSize(new Dimension(51, 30));// Edición
+																		// tamaño
+																		// del
+																		// boton.
+			lblRespuestas[i].setPreferredSize(new Dimension(255, 80));// Edición
+																		// tamaño
+																		// del
+																		// boton.
+			btnRespuestas[i].setBackground(Color.cyan);// Color de los botones
+														// de la respuesta
+			btnRespuestas[i].setForeground(Color.WHITE);// Color de las
+														// respuestas
+														// desplegadas
+			lblRespuestas[i].setForeground(Color.WHITE);// Color de las
+														// respuestas
+														// desplegadas
 			pnlCentral.add(btnRespuestas[i]);
 			pnlCentral.add(lblRespuestas[i]);
 		}
@@ -174,7 +182,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		long actual = System.currentTimeMillis();
 		System.out.println(actual);
 		System.out.println(millis);
-		return "eltiempo: "+String.valueOf((actual - millis)/100/60);
+		return "eltiempo: " + String.valueOf((actual - millis) / 100 / 60);
 	}
 
 	// Es un panel que contiene los botones "Salir" y "Proxima Pregunta"
@@ -188,8 +196,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		// Icon pregunta = new ImageIcon(imagenP + "question.gif");
 		// btnSiguientePreg = new
 		// JButton("<html><font size = -1><b><u>N</u>ext Question", pregunta);
-		btnSiguientePreg = new JButton(
-				"<html><font size = -1><b><u>N</u>ext Question", pregunta);
+		btnSiguientePreg = new JButton("<html><font size = -1><b><u>N</u>ext Question", pregunta);
 		btnSiguientePreg.addActionListener(this);
 
 		Icon parar = new ImageIcon(imagenP + "stop.gif");
@@ -211,30 +218,29 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		JPanel pnlSuperior = new JPanel();
 		pnlSuperior.setLayout(new GridLayout(1, 2));
 
-		
-		btn50 = new JButton(
-				"<html><font size = -1580><b><u>N</u>ext Question");
+		Icon medio = new ImageIcon(imagenP + "50.png");
+		btn50 = new JButton(medio);
 		btn50.addActionListener(this);
 		btn50.setPreferredSize(new Dimension(10, 60));
 
-		btnLlamada = new JButton(
-				"<html><font size = -1580><b><u>N</u>ext Question");
-		btnLlamada.addActionListener(this);
-		btnLlamada.setPreferredSize(new Dimension(10, 60));
-		
-		btnPublico = new JButton(
-				"<html><font size = -1580><b><u>N</u>ext Question");
+		Icon publico = new ImageIcon(imagenP + "publico.jpg");
+		btnPublico = new JButton(publico);
 		btnPublico.addActionListener(this);
 		btnPublico.setPreferredSize(new Dimension(10, 60));
-		
+
+		Icon llamada = new ImageIcon(imagenP + "llamada.jpg");
+		btnLlamada = new JButton(llamada);
+		btnLlamada.addActionListener(this);
+		btnLlamada.setPreferredSize(new Dimension(10, 60));
+
 		pnlSuperior.add(btn50);
-		pnlSuperior.add(btnLlamada);
 		pnlSuperior.add(btnPublico);
+		pnlSuperior.add(btnLlamada);
 		pnlSuperior.add(new TimerJFrame());
 
 		return pnlSuperior;
 	}
-	
+
 	// Crea la etiqueta usada para mostrar las respuestas.
 	private void iniLblRespuestas() {
 
@@ -279,58 +285,73 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 
 	// Metodo llamado cuando el botton es accionado
 	public void actionPerformed(ActionEvent evento) {
-		
-		// Usuario pulsa para conseguir la prÃ³xima pregunta
-		if (evento.getSource() == btnSiguientePreg) {
 
-			btnSiguientePreg.setEnabled(false);
-			activarBtnRespuesta(true);
-			mg.siguientePreg();
-			txtPreguntas.setText(mg.obtenerResp());
+		if (evento.getSource() == btnPublico) {
+			int num;
+			for (num = 0; num <= 1; num++) {
+				if (num == 1) {
+					Random Genrandom = new Random();
+					int r1 = Genrandom.nextInt(100);
 
-			// Crea una matriz de cadenas utiliza para establecer el texto de la
-			// etiqueta
-			String[] answers = new String[Num_Respuestas];
-			for (int i = 0; i < Num_Respuestas; i++) {
-				answers[i] = mg.obtextodePreg(btnRespuestas[i].getText());
-			}
-			ponerLblResp(answers);
-		}
+					JTextField campo1 = new JTextField(r1);
+					JPanel panel = new JPanel(new GridLayout(0, 1));
+					panel.add(new JLabel("A) : "));
+					panel.add(campo1);
+					JOptionPane.showMessageDialog(null, panel);
 
-		// Usuario pulsa para salir del juego
-		if (evento.getSource() == btnSalir) {
-			System.exit(0);
-		}
-
-		// Evento cuando un usuario preciona un botton de las respuestas
-		for (int i = 0; i < Num_Respuestas; i++) {
-
-			if (evento.getSource() == btnRespuestas[i]) {
-
-				btnSiguientePreg.setEnabled(true);
-				boolean correct = mg.esResCorrecta(btnRespuestas[i].getText());
-
-				// El jugador tiene la respuesta correcta
-				if (correct) {
-					if (mg.haGanado()) {
-						lblDineroG
-								.setText(("Jugador: " + nombre + "                                               GANASTE ₡ 25,000,000 MILLONES"));
-						btnSiguientePreg.setEnabled(false);
-					} else {
-						lblDineroG
-								.setText(("Jugador: "
-										+ nombre+ count()
-										+ "                                                 Dinero Ganado: " + mg
-										.obtenerDineroGanado()));
-					}
-				} // El jugador tiene la respuesta incorrecta
-				else {
-					lblDineroG
-							.setText(("Jugador: " + nombre + "                                                 Has Perdido"));
-					btnSiguientePreg.setEnabled(false);
 				}
+			}
+			// Usuario pulsa para conseguir la proxima pregunta
+			if (evento.getSource() == btnSiguientePreg) {
 
-				activarBtnRespuesta(false);
+				btnSiguientePreg.setEnabled(false);
+				activarBtnRespuesta(true);
+				mg.siguientePreg();
+				txtPreguntas.setText(mg.obtenerResp());
+
+				// Crea una matriz de cadenas utiliza para establecer el texto
+				// de la
+				// etiqueta
+				String[] answers = new String[Num_Respuestas];
+				for (int i = 0; i < Num_Respuestas; i++) {
+					answers[i] = mg.obtextodePreg(btnRespuestas[i].getText());
+				}
+				ponerLblResp(answers);
+			}
+
+			// Usuario pulsa para salir del juego
+			if (evento.getSource() == btnSalir) {
+				System.exit(0);
+			}
+
+			// Evento cuando un usuario preciona un botton de las respuestas
+			for (int i = 0; i < Num_Respuestas; i++) {
+
+				if (evento.getSource() == btnRespuestas[i]) {
+
+					btnSiguientePreg.setEnabled(true);
+					boolean correct = mg.esResCorrecta(btnRespuestas[i].getText());
+
+					// El jugador tiene la respuesta correcta
+					if (correct) {
+						if (mg.haGanado()) {
+							lblDineroG.setText(("Jugador: " + nombre
+									+ "                                               GANASTE ₡ 25,000,000 MILLONES"));
+							btnSiguientePreg.setEnabled(false);
+						} else {
+							lblDineroG.setText(("Jugador: " + nombre + count()
+									+ "                                                 Dinero Ganado: "
+									+ mg.obtenerDineroGanado()));
+						}
+					} // El jugador tiene la respuesta incorrecta
+					else {
+						lblDineroG.setText(("Jugador: " + nombre
+								+ "                                                 Has Perdido"));
+						btnSiguientePreg.setEnabled(false);
+					}
+
+					activarBtnRespuesta(false);
+				}
 			}
 		}
 	}
