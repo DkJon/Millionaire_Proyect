@@ -24,16 +24,15 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		WindowListener {
 
 	/**
-	 *Para que pueda convertir la clase en bits para enviarlo por la red  
+	 * Para que pueda convertir la clase en bits para enviarlo por la red
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
 	 * La interfaz ActionListener sirve para crear programas dinÃ¡micos y
-	 permitir la interacciÃ³n del usuario.
-	 El window listener es un objeto que se encarga de escuchar los eventos
-	 que se ejecutan que tienen que ver con la ventana.
-	 Estos eventos son como si esta activa,minimizada,maximizada, abierta,se
-	 cierra. 
+	 * permitir la interacciÃ³n del usuario. El window listener es un objeto que
+	 * se encarga de escuchar los eventos que se ejecutan que tienen que ver con
+	 * la ventana. Estos eventos son como si esta activa,minimizada,maximizada,
+	 * abierta,se cierra.
 	 */
 	private JScrollPane pnlDes;
 	private JTextArea txtPreguntas;
@@ -45,13 +44,11 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private JButton btn50;
 	private JButton btnLlamada;
 	private JButton btnPublico;
-	
+	private int numPreg = 0;
+	private Container cont;
+
 	private String nombre;
 	private String imagenP = "src/files/";
-	
-	
-	private long millis = 0;
-
 
 	private Color backgroundColor = new Color(50, 20, 20);
 
@@ -60,24 +57,20 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 	private final int Num_Respuestas = 4;
 
 	public JuegoGUI(JuegoM m) {
-		
-		
-		millis = System.currentTimeMillis();
-
 		mg = m;
-		//nombre = JOptionPane.showInputDialog("Ingrese su nombre");
-		Container cont = getContentPane();
+		// nombre = JOptionPane.showInputDialog("Ingrese su nombre");
+		cont = getContentPane();
 		cont.setLayout(new BorderLayout());
 
 		JPanel pnlCentral = new JPanel();
 		pnlCentral.setLayout(new GridLayout(2, 1));
-		pnlCentral.add(logoArea());
+		ImagePanel logo = new ImagePanel("src/files/millonario.jpg", 645, 285);
+		pnlCentral.add(logo);
 		pnlCentral.add(panelRespuesta());
-
+		cont.add(iniPanelSuperior(), BorderLayout.NORTH);
 		cont.add(pnlCentral, BorderLayout.CENTER);
 		cont.add(iniPanelInferior(), BorderLayout.SOUTH);
-		cont.add(iniPanelSuperior(), BorderLayout.NORTH);
-		
+
 		addWindowListener(this); // Funcion de realizar eventos en windows
 		setTitle("Quien Quiere Ser Millonario ");
 		setLocation(0, 300);
@@ -87,21 +80,12 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		setVisible(true);
 	}
 
-	// Pone la imagen de millonario en el JPanel
-	// Se utiliza Constructor para la funcion
-	private JComponent logoArea() {
-
-		ImagePanel logo = new ImagePanel("src/files/millonario.jpg",645, 285);
-		
-		return logo;
-		
-	}
-	
 	// Crea un panel que contiene las preguntas y respuestas.
 	private JComponent panelRespuesta() {
 
 		JPanel pnlRespuesta = new JPanel();
-		ImagePanel pnlCentral = new ImagePanel("src/files/respuestas.jpg",645, 175);
+		ImagePanel pnlCentral = new ImagePanel("src/files/respuestas.jpg", 645,
+				175);
 		JPanel pnlSur = new JPanel();
 		JPanel pnlNorte = new JPanel();
 
@@ -137,7 +121,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		lblDineroG = new JLabel(
 				"Jugador: "
 						+ nombre
-						+ "                                              Dinero Actual: ₡ 0");
+						+ "                                              Dinero Actual: "+mg.obtenerDineroGanado());
 		pnlSur.add(lblDineroG);
 		pnlSur.setBackground(Color.blue);
 		lblDineroG.setForeground(Color.white);
@@ -150,11 +134,23 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 
 		for (int i = 0; i < Num_Respuestas; i++) {
 
-			btnRespuestas[i].setPreferredSize(new Dimension(51, 30));// Edición tamaño del boton.
-			lblRespuestas[i].setPreferredSize(new Dimension(255, 80));// Edición tamaño del boton.
-			btnRespuestas[i].setBackground(backgroundColor);// Color de los botones de la respuesta
-			btnRespuestas[i].setForeground(Color.WHITE);//Color de las respuestas desplegadas
-			lblRespuestas[i].setForeground(Color.WHITE);//Color de las respuestas desplegadas
+			btnRespuestas[i].setPreferredSize(new Dimension(51, 30));// Edición
+																		// tamaño
+																		// del
+																		// boton.
+			lblRespuestas[i].setPreferredSize(new Dimension(255, 80));// Edición
+																		// tamaño
+																		// del
+																		// boton.
+			btnRespuestas[i].setBackground(backgroundColor);// Color de los
+															// botones de la
+															// respuesta
+			btnRespuestas[i].setForeground(Color.WHITE);// Color de las
+														// respuestas
+														// desplegadas
+			lblRespuestas[i].setForeground(Color.WHITE);// Color de las
+														// respuestas
+														// desplegadas
 			pnlCentral.add(btnRespuestas[i]);
 			pnlCentral.add(lblRespuestas[i]);
 		}
@@ -168,13 +164,6 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		pnlRespuesta.add(pnlSur, BorderLayout.SOUTH);
 
 		return pnlRespuesta;
-	}
-
-	private String count() {
-		long actual = System.currentTimeMillis();
-		System.out.println(actual);
-		System.out.println(millis);
-		return "eltiempo: "+String.valueOf((actual - millis)/100/60);
 	}
 
 	// Es un panel que contiene los botones "Salir" y "Proxima Pregunta"
@@ -211,9 +200,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 		JPanel pnlSuperior = new JPanel();
 		pnlSuperior.setLayout(new GridLayout(1, 2));
 
-		
-		btn50 = new JButton(
-				"<html><font size = -1580><b><u>N</u>ext Question");
+		btn50 = new JButton("<html><font size = -1580><b><u>N</u>ext Question");
 		btn50.addActionListener(this);
 		btn50.setPreferredSize(new Dimension(10, 60));
 
@@ -221,12 +208,12 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 				"<html><font size = -1580><b><u>N</u>ext Question");
 		btnLlamada.addActionListener(this);
 		btnLlamada.setPreferredSize(new Dimension(10, 60));
-		
+
 		btnPublico = new JButton(
 				"<html><font size = -1580><b><u>N</u>ext Question");
 		btnPublico.addActionListener(this);
 		btnPublico.setPreferredSize(new Dimension(10, 60));
-		
+
 		pnlSuperior.add(btn50);
 		pnlSuperior.add(btnLlamada);
 		pnlSuperior.add(btnPublico);
@@ -234,7 +221,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 
 		return pnlSuperior;
 	}
-	
+
 	// Crea la etiqueta usada para mostrar las respuestas.
 	private void iniLblRespuestas() {
 
@@ -279,9 +266,20 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 
 	// Metodo llamado cuando el botton es accionado
 	public void actionPerformed(ActionEvent evento) {
-		
+
 		// Usuario pulsa para conseguir la prÃ³xima pregunta
 		if (evento.getSource() == btnSiguientePreg) {
+			numPreg++; // numero de pregunta actual
+			cont.remove(1); // Borra del contenedor papa el hijo de la posicion
+							// 1 (imagen mas la pregunta)
+			JPanel pnlCentral = new JPanel();
+			pnlCentral.setLayout(new GridLayout(2, 1));
+			ImagePanel logo = new ImagePanel("src/files/millonario" + numPreg
+					+ ".jpg", 645, 285);
+			pnlCentral.add(logo);
+			pnlCentral.add(panelRespuesta());
+			cont.add(pnlCentral, 1); // Anado el nuevo contenedor en la misma
+										// posicion de la anterior
 
 			btnSiguientePreg.setEnabled(false);
 			activarBtnRespuesta(true);
@@ -319,7 +317,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener,
 					} else {
 						lblDineroG
 								.setText(("Jugador: "
-										+ nombre+ count()
+										+ nombre
 										+ "                                                 Dinero Ganado: " + mg
 										.obtenerDineroGanado()));
 					}
