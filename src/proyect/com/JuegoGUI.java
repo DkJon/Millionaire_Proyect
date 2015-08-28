@@ -10,15 +10,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Random;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class JuegoGUI extends javax.swing.JFrame implements ActionListener, WindowListener {
 
@@ -49,15 +52,13 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 	private String nombre;
 	private String imagenP = "src/files/";
 
-	private Color backgroundColor = new Color(50, 20, 20);
-
 	private JuegoM mg;
 
 	private final int Num_Respuestas = 4;
 
 	public JuegoGUI(JuegoM m) {
 		mg = m;
-		// nombre = JOptionPane.showInputDialog("Ingrese su nombre");
+		nombre = JOptionPane.showInputDialog("Ingrese su nombre");
 		cont = getContentPane();
 
 		cont.setLayout(new BorderLayout());
@@ -85,7 +86,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 
 		JPanel pnlRespuesta = new JPanel();
 
-		ImagePanel pnlCentral = new ImagePanel("src/files/respuestas.jpg", 645, 175);
+		ImagePanel pnlCentral = new ImagePanel("src/files/wiki.jpg", 645, 175);
 		JPanel pnlSur = new JPanel();
 		JPanel pnlNorte = new JPanel();
 
@@ -100,7 +101,9 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 		// terminando lÃ­neas.
 		txtPreguntas.setForeground(Color.white);
 		// Establece el color de los componentes
-		txtPreguntas.setBackground(backgroundColor);
+		txtPreguntas.setBackground(Color.DARK_GRAY);
+		txtPreguntas.setText("                ¡¡¡BIENVENIDO A QUIEN QUIERE SER MILLONARIO!!!   "
+				+ "\n  PARA INICIAR EL JUEGO ACCIONE EL BOTON SIGUIENTE PREGUNTA");
 		// Establece el background(fondo) del componene.Es del textbox.
 		txtPreguntas.setEditable(false);
 		// Propiedad permite determinar si se puede o no manipular
@@ -111,19 +114,20 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 		pnlDes = new JScrollPane(txtPreguntas);
 		// La funcion de plnNorte esabarcar un margen al rededor del textbox con
 		// la finalidad de dar mÃ¡s estilo y orden.
-		pnlNorte.setBackground(Color.blue);
+		pnlNorte.setBackground(Color.BLACK);
 		pnlNorte.add(pnlDes);
 
 		// pnlNorth.setPreferredSize (new Dimension (460,70)); hace referencia
 		// al contenedor de la pregunta
 		pnlNorte.setPreferredSize(new Dimension(460, 87));
 		// pnlNorth.setPreferredSize (new Dimension (410,120));
+
 		lblDineroG = new JLabel(
 
 		"Jugador: " + nombre + "                                              Dinero Actual: "
 				+ mg.obtenerDineroGanado());
 		pnlSur.add(lblDineroG);
-		pnlSur.setBackground(Color.blue);
+		pnlSur.setBackground(Color.BLACK);
 		lblDineroG.setForeground(Color.white);
 
 		iniBtnRespuestas();
@@ -143,9 +147,9 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 																		// del
 																		// boton.
 
-			btnRespuestas[i].setBackground(backgroundColor);// Color de los
-															// botones de la
-															// respuesta
+			btnRespuestas[i].setBackground(Color.BLACK);// Color de los
+														// botones de la
+														// respuesta
 			btnRespuestas[i].setForeground(Color.WHITE);// Color de las
 														// respuestas
 														// desplegadas
@@ -173,17 +177,17 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 		JPanel pnlInferior = new JPanel();
 		pnlInferior.setLayout(new GridLayout(1, 2));
 
-		Icon pregunta = new ImageIcon(imagenP + "question.gif");
+		Icon pregunta = new ImageIcon(imagenP + "question.png");
 		// Imagen en el boton del panel inferior: Siguiente Pregunta
 		// Icon pregunta = new ImageIcon(imagenP + "question.gif");
 		// btnSiguientePreg = new
-		// JButton("<html><font size = -1><b><u>N</u>ext Question", pregunta);
-		btnSiguientePreg = new JButton("<html><font size = -1><b><u>N</u>ext Question", pregunta);
+		// JButton("<html><font size = -1><b><u>N</u>ext Question", ppregunta);
+		btnSiguientePreg = new JButton("<html><font size = -1><b><u>S</u>iguiente Pregunta", pregunta);
 		btnSiguientePreg.addActionListener(this);
 
-		Icon parar = new ImageIcon(imagenP + "stop.gif");
+		Icon parar = new ImageIcon(imagenP + "stop.png");
 
-		btnSalir = new JButton("<html><b><u>Q</u>uit", parar);
+		btnSalir = new JButton("<html><b><u>Retirarse</u>", parar);
 		// Imagen en el boton del panel inferior: Salir
 		// Icon parar = new ImageIcon(imagenP + "stop.gif");
 		// btnSalir = new JButton("<html><b><u>Q</u>uit", parar);
@@ -266,10 +270,70 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 		}
 	}
 
-	// Metodo llamado cuando el botton es accionado
+	// Metodo llamado cuando el boton es accionado
 	public void actionPerformed(ActionEvent evento) {
 
-		// Usuario pulsa para conseguir la prÃ³xima pregunta
+		if (evento.getSource() == btn50) {
+			Random randomGenerator = new Random();
+			int cont=0;
+			int y=0;
+			while(cont!=2){
+				int x = randomGenerator.nextInt(3);
+				if(!mg.esResCorrecta(btnRespuestas[x].getText())&& y!=x){
+					btnRespuestas[x].setEnabled(false);
+					y=y+x;
+					cont++;
+				}
+			}
+			btn50.setEnabled(false);
+		}
+
+		if (evento.getSource() == btnLlamada) {
+			Random randomGenerator = new Random();
+			JPanel panel = new JPanel(new GridLayout(0, 1));
+			int y = randomGenerator.nextInt(4);
+			if (y == 1) {
+				panel.add(new JLabel("LLamando a: María Jara"));
+			}
+			if (y == 2) {
+				panel.add(new JLabel("LLamando a: Juan Diego"));
+			}
+			if (y == 3) {
+				panel.add(new JLabel("LLamando a: Andres Molina"));
+			}
+			if (y == 4) {
+				panel.add(new JLabel("LLamando a: Marco José"));
+			}
+			if (y == 0) {
+				panel.add(new JLabel("LLamando a: Jhon Villalobos"));
+			}
+			panel.add(new CallJframe());
+			JOptionPane.showMessageDialog(null, panel);
+			btnLlamada.setEnabled(false);
+		}
+		if (evento.getSource() == btnPublico) {
+
+			Random randomGenerator = new Random();
+			int a = randomGenerator.nextInt(100);
+			int b = randomGenerator.nextInt(100 - a);
+			int c = randomGenerator.nextInt(100 - a - b);
+			int d = 100 - a - b - c;
+
+			JPanel panel = new JPanel(new GridLayout(0, 1));
+			panel.add(new JLabel("A) : "));
+			panel.add(new JTextField(" " + a + "%"));
+			panel.add(new JLabel("B) : "));
+			panel.add(new JTextField(" " + b + "%"));
+			panel.add(new JLabel("C) : "));
+			panel.add(new JTextField(" " + c + "%"));
+			panel.add(new JLabel("D) : "));
+			panel.add(new JTextField(" " + d + "%"));
+			JOptionPane.showMessageDialog(null, panel);
+
+			btnPublico.setEnabled(false);
+		}
+
+		// Usuario pulsa para conseguir la proxima pregunta
 		if (evento.getSource() == btnSiguientePreg) {
 			numPreg++; // numero de pregunta actual
 			cont.remove(1); // Borra del contenedor papa el hijo de la posicion
@@ -313,7 +377,9 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 				// El jugador tiene la respuesta correcta
 				if (correct) {
 					if (mg.haGanado()) {
-						lblDineroG.setText(("Jugador: " + nombre
+						txtPreguntas.setText("                               ¡¡¡ FELICIDADES " + nombre + "!!!"
+								+ "\n                                GANASTE ₡ 25,000,000 MILLONES");
+						lblDineroG.setText((" Jugador: " + nombre
 								+ "                                               GANASTE ₡ 25,000,000 MILLONES"));
 						btnSiguientePreg.setEnabled(false);
 					} else {
@@ -323,6 +389,8 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 					}
 				} // El jugador tiene la respuesta incorrecta
 				else {
+					txtPreguntas.setText("                                           " + nombre
+							+ "\n                                                 ¡¡¡HAS PERDIDO!!!");
 					lblDineroG.setText(
 							("Jugador: " + nombre + "                                                 Has Perdido"));
 					btnSiguientePreg.setEnabled(false);

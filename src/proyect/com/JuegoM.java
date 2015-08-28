@@ -227,6 +227,20 @@ public class JuegoM {
             Dinero = "₡ 25,000,000";
         } else if (DineroG == 500000) {
             Dinero = "₡ 5,00000.00 Zona Segura ";
+        } else if (DineroG == 1000000) {
+            Dinero = "₡ 1,000,000 ";
+        } else if (DineroG == 2500000) {
+            Dinero = "₡ 2,500,000 ";
+        } else if (DineroG == 5000000) {
+            Dinero = "₡ 5,000,000 ";
+        } else if (DineroG == 12500000) {
+            Dinero = "₡ 12,500,000 ";
+        } else if (DineroG == 15000000) {
+            Dinero = "₡ 15,000,000 ";
+        } else if (DineroG == 17500000) {
+            Dinero = "₡ 17,500,000 ";
+        } else if (DineroG == 20000000) {
+            Dinero = "₡ 20,000,000 ";
         } else if (DineroG == 10000000) {
             Dinero = "₡ 10,000,000 Zona Segura ";
         }else {
