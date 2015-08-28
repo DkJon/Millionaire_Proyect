@@ -377,7 +377,7 @@ public class JuegoGUI extends javax.swing.JFrame implements ActionListener, Wind
 				// El jugador tiene la respuesta correcta
 				if (correct) {
 					if (mg.haGanado()) {
-						txtPreguntas.setText("                               ¡¡¡ FELICIDADES " + nombre + "!!!"
+						txtPreguntas.setText("                             ¡¡¡ FELICIDADES " + nombre + "!!!"
 								+ "\n                                GANASTE ₡ 25,000,000 MILLONES");
 						lblDineroG.setText((" Jugador: " + nombre
 								+ "                                               GANASTE ₡ 25,000,000 MILLONES"));
